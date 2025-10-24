@@ -9,6 +9,7 @@ MY_PROJECT_NAME=myproject
 ```
 git clone https://github.com/gubbai/cf-next-authjs-prisma-d1 $MY_PROJECT_NAME
 
+cd $MY_PROJECT_NAME
 pnpm i
 
 mv .dev.vars.example .dev.vars
@@ -52,6 +53,7 @@ git clone https://github.com/gubbai/cf-next-authjs-prisma-d1 $MY_PROJECT_NAME
 ## pnpm install
 
 ```
+cd $MY_PROJECT_NAME
 pnpm i
 ```
 
