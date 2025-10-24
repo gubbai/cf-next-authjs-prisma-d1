@@ -37,9 +37,7 @@ pnpm prisma migrate dev
 pnpm prisma migrate deploy --config prisma-prod.config.ts
 ```
 
----
-
-## Clone the Repository
+## このリポジトリをクローンする
 
 ```
 MY_PROJECT_NAME=myproject
@@ -49,38 +47,38 @@ MY_PROJECT_NAME=myproject
 git clone https://github.com/gubbai/cf-next-authjs-prisma-d1 $MY_PROJECT_NAME
 ```
 
-## Install Dependencies
+## pnpm install
 
 ```
 pnpm i
 ```
 
-## Create `.dev.vars` and `.env`
+## `.dev.vars`, `.env`の作成
 
 ```
 mv .dev.vars.example .dev.vars
 mv .env.example .env
 ```
 
-## Create a D1 Database
+## D1を作成
 
 ```
 pnpm wrangler d1 create $MY_PROJECT_NAME --use-remote false --update-config true --binding DB
 ```
 
-## Create Local SQLite File for Development
+## local dev 用のsqliteファイルを作成
 
 ```
 pnpm wrangler d1 execute $MY_PROJECT_NAME --command "SELECT 1;"
 ```
 
-### Add the Generated File Path to `.env`
+### 生成されたファイルを .env に設定
 
 ```
 echo -e "\nDATABASE_URL=\"file:../$(find . -path '*/.wrangler/state/v3/d1/miniflare-D1DatabaseObject/*.sqlite' -printf '%P' -quit)\"" >> .env
 ```
 
-## Generate Auth.js Secret
+## authjs secretの作成
 
 ```
 echo -e "\nAUTH_SECRET=$(pnpm dlx auth secret --raw)" >> .dev.vars
@@ -92,7 +90,7 @@ echo -e "\nAUTH_SECRET=$(pnpm dlx auth secret --raw)" >> .dev.vars
 pnpm cf-typegen
 ```
 
-## Cloudflare Configuration
+## Cloudflare 関連の設定
 
 ```.env
 CLOUDFLARE_ACCOUNT_ID=
@@ -102,25 +100,21 @@ CLOUDFLARE_D1_TOKEN=
 
 ### `CLOUDFLARE_ACCOUNT_ID`
 
-Check it with:
-
-```
-pnpm wrangler whoami
-```
+`pnpm wrangler whoami`　で確認。
 
 ### `CLOUDFLARE_DATABASE_ID`
 
-You can find it in `wrangler.jsonc`.
+`wrangler.jsonc`で確認。
 
 ### `CLOUDFLARE_D1_TOKEN`
 
-Visit [https://dash.cloudflare.com/profile/api-tokens](https://dash.cloudflare.com/profile/api-tokens)
+[https://dash.cloudflare.com/profile/api-tokens](https://dash.cloudflare.com/profile/api-tokens) にアクセス。
 
-1. Click **Create Token**
-2. Choose **Create Custom Token**
-3. Under **Permissions**, select **D1**, **Edit**, and create the token
+1. `Create Token`
+2. `Create Custom Token`
+3. `Permissions`を`D1`, `Edit`にして作成
 
-## Prisma Migrations
+## prisma migration
 
 ```
 pnpm prisma migrate resolve --applied 0_init
