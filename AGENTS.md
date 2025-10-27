@@ -1,7 +1,5 @@
 # Repository Guidelines
 
-> **⚠️ Important**: When editing files outside of `./app` or `./lib`, always ask for explicit permission first. Even within `./app` and `./lib`, request permission before modifying `./app/globals.css`, `./app/layout.tsx`, or `./lib/db.ts`.
-
 ## Project Structure & Module Organization
 The app follows the Next.js App Router. Place UI and route components under `app/`, keeping API handlers in `app/api/**/route.ts`; `auth.ts` exposes the Auth.js config consumed by `[...nextauth]/route.ts`. Shared utilities belong in `lib/` (e.g., `lib/db.ts` instantiates the Prisma D1 adapter). Database schema changes and migrations live in `prisma/`, with production overrides in `prisma-prod.config.ts`. Static assets stay in `public/`, and platform settings sit in `wrangler.jsonc` plus `open-next.config.ts`.
 
