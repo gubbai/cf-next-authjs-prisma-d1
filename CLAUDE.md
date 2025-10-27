@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+> **⚠️ Important**: When editing files outside of `./app` or `./lib`, always ask for explicit permission first. Even within `./app` and `./lib`, request permission before modifying `./app/globals.css`, `./app/layout.tsx`, or `./lib/db.ts`.
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
