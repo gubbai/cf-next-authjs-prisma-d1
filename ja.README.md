@@ -129,3 +129,19 @@ pnpm prisma migrate resolve --applied 0_init --config prisma-prod.config.ts
 pnpm prisma migrate dev
 pnpm prisma migrate deploy --config prisma-prod.config.ts
 ```
+
+## AGENTS.md CLAUDE.md
+
+この構成は特殊で繊細なので、CodexやClaude Codeに破壊されやすいです。
+簡単に防ぐためには以下を`AGENTS.md`や`CLAUDE.md`の先頭に追記してください。
+
+```md
+## File Editing Permission Rules
+
+**The following files can be edited freely:**
+- Files under `./app/` (except `./app/globals.css` and `./app/layout.tsx`)
+- Files under `./lib/` (except `./lib/db.ts`)
+- `./prisma/schema.prisma`
+
+**All other files require explicit permission before editing.**
+```
